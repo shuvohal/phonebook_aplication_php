@@ -1,4 +1,43 @@
+
+<?php
+require_once __DIR__ ."/autoload.php";
+
+
+
+if (isset($_POST['contact_form'])){
+
+     $name = $_POST['name'];
+     $phone = $_POST['phone'];
+     $location = $_POST['location'];
+
+     $photo = $_POST['photo'];
+
+      $group = $_POST['group'];
+           
+
+    $old_data = json_decode(file_get_contents('data/contacts.json'));
+
+    array_push($old_data,[
+        'name' => $name,
+        'phone' => $phone,
+        'location' => $location,
+        'photo' => $photo,
+        'group' => $group,
+    ]);
+         
+    file_put_contents('data/contacts.json', json_encode($old_data));
+}
+
+
+
+
+
+
+?>
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,20 +52,23 @@
       <h2>Create new contact</h2>
       
       <hr>
-    <form action="" class="contact-from">
+    <form action="" method="POST" class="contact-from">
         <input type="text" placeholder="name" name="name">
         <input type="text" placeholder="phone" name="phone">
         <input type="text" placeholder="Location" name="location">
         <input type="text" placeholder="photo" name="photo">
 
-        <select name="" id="">
+        <select name="group" id="">
            <option value ="Family">Family</option>
             <option value ="Friends">Friends</option>
              <option value ="Relatives">Relatives</option>
               <option value ="Others">Others</option>
         </select>
 
-        <input type="submit" value="contact_form">
+        <input type="submit" name="contact_form" value="contact_form">
+
+
+
     </form>
 
     </div>
