@@ -13,16 +13,23 @@ if (isset($_POST['contact_form'])){
      $photo = $_POST['photo'];
 
       $group = $_POST['group'];
+       $gender = $_POST['gender'];
            
 
     $old_data = json_decode(file_get_contents('data/contacts.json'));
 
     array_push($old_data,[
-        'name' => $name,
-        'phone' => $phone,
+        'id'       => createID(),
+        'name'     => $name,
+        'phone'    => $phone,
         'location' => $location,
-        'photo' => $photo,
-        'group' => $group,
+        'photo'    => $photo,
+        'group'    => $group,
+        'gender'   => $gender,
+        'status'   => true,
+        'createdAt'   => time(),
+        'updateAt'   => null,
+
     ]);
          
     file_put_contents('data/contacts.json', json_encode($old_data));
@@ -57,6 +64,18 @@ if (isset($_POST['contact_form'])){
         <input type="text" placeholder="phone" name="phone">
         <input type="text" placeholder="Location" name="location">
         <input type="text" placeholder="photo" name="photo">
+        <label>
+           
+            <input type="radio" value="male" name="gender">
+             Male
+        </label>
+
+
+        <label>
+            
+            <input type="radio" value="female" name="gender">
+            Female
+        </label>
 
         <select name="group" id="">
            <option value ="Family">Family</option>
