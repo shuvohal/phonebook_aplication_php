@@ -59,6 +59,7 @@ if (isset($_POST['contact_form'])){
       <h2>Create new contact</h2>
       
       <hr>
+ 
     <form action="" method="POST" class="contact-from">
         <input type="text" placeholder="name" name="name">
         <input type="text" placeholder="phone" name="phone">
